@@ -1,0 +1,32 @@
+Calculator project for TOP.
+
+Create the following functions in js:
+    ✔ add @done(21-07-29 02:51)
+    ✔ subtract @done(21-07-29 02:51)
+    ✔ multiply @done(21-07-29 02:51)
+    ✔ divide @done(21-07-29 02:51)
+
+✔ Create a function *operate* that takes an operator and 2 numbers and then calls one of the above functions on the numbers. @done(21-07-29 03:33)
+
+✔ Create a basic HTML calculator with buttons for each digit, each of the above functions and an equals key. Add a clear button. @done(21-07-29 05:09)
+
+✔ Create a function to represent the display. @done(21-07-29 05:33)
+
+☐ Implement functionality. Start by storing a number in a variable until an operator is chosen. Once it is, start storing the next number in another variable.
+
+Example: *https://mrbuddh4.github.io/calculator/*
+
+Gotchas:
+    If serveral operations are strung together, display the result of the previous operation.
+    Round answers with long decimals.
+    Pressing *=* before entering all of the numbers or operators could cause problems.
+    Pressing *clear* should wipe out any existing data.. make sure the user is really starting fresh after pressing *clear*.
+    Error message if dividing by 0, etc.
+
+☐ Add floating numbers.
+
+☐ Make it look nice.
+
+☐ Add a backspace button.
+
+☐ Add keyboard support.

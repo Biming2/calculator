@@ -12,7 +12,7 @@ Create the following functions in js:
 
 ✔ Create a function to represent the display. @done(21-07-29 05:33)
 
-☐ Implement functionality. Start by storing a number in a variable until an operator is chosen. Once it is, start storing the next number in another variable.
+✔ Implement functionality. Start by storing a number in a variable until an operator is chosen. Once it is, start storing the next number in another variable. @done(21-07-29 07:28)
 
 Example: *https://mrbuddh4.github.io/calculator/*
 

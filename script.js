@@ -1,13 +1,16 @@
 let firstNumber = '';
 let secondNumber = '';
-let currentNumber = '';
-let operatorChoice = '';
+let result;
+let operator = '';
 let operatorOptions = ['+', '-', '*', '/'];
 const content = document.getElementById('result');
 const operands = document.getElementsByClassName('operand');
 const operandsArray = Array.prototype.slice.call(operands);
 const operators = document.getElementsByClassName('operator');
 const operatorsArray = Array.prototype.slice.call(operators);
+const equal = document.getElementById('equal');
+const clear = document.getElementById('clear');
+const sign = document.getElementById('sign');
 
 function add(a, b) {
     let result = a + b;
@@ -31,6 +34,8 @@ function divide(a, b) {
 
 function operate(a, b, operator) {
     let result;
+    a = parseInt(a);
+    b = parseInt(b);
 
     switch(operator) {
         case '+':
@@ -64,22 +69,45 @@ function clearDisplay() {
     content.innerText = '';
 }
 
-function updateNumber(number, operand) {
-    number += operand.value;
-    console.log(number);
-    updateDisplay(number);
-    return number;
-}
-
-operatorsArray.forEach(operator => {
-    operator.addEventListener('click', function() {
-        console.log(operator.value);
-        operatorChoice = operator.value;
+operatorsArray.forEach(operatorBtn => {
+    operatorBtn.addEventListener('click', function() {
+        console.log(firstNumber);
+        console.log(operatorBtn.value);
+        operator = operatorBtn.value;
+        secondNumber = firstNumber;
+        firstNumber = '';
         clearDisplay();
-        getSecondNumber();
     });
 });
 
 operandsArray.forEach(operand => {
-    operand.addEventListener('click', updateNumber(firstNumber, operand))
+    operand.addEventListener('click', function() {
+        firstNumber += operand.value;
+        updateDisplay(firstNumber);
+    });
+});
+
+equal.addEventListener('click', function() {
+    console.log(firstNumber, operator, secondNumber);
+    result = operate(secondNumber, firstNumber, operator);
+    console.log(result);
+    updateDisplay(result);
+    firstNumber = '';
+    secondNumber = '';
+});
+
+clear.addEventListener('click', function() {
+    console.log('CLEARING');
+    clearDisplay();
+    firstNumber = '';
+    secondNumber = '';
+    operator = '';
+    console.log(firstNumber, secondNumber, operator);
+    console.log('CLEARED');
+})
+
+sign.addEventListener('click', function() {
+    firstNumber *= -1;
+    console.log(firstNumber);
+    updateDisplay(firstNumber);
 });

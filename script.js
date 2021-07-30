@@ -78,11 +78,16 @@ operatorsArray.forEach(operatorBtn => {
             result = operate(secondNumber, firstNumber, operator);
             updateDisplay(result);
         }
-        console.log(firstNumber);
-        console.log(operatorBtn.value);
-        operator = operatorBtn.value;
-        secondNumber = firstNumber;    
-        firstNumber = '';
+        if(firstNumber === '') {
+            operator = operatorBtn.value;
+        }
+        else{
+            console.log(firstNumber);
+            console.log(operatorBtn.value);
+            operator = operatorBtn.value;
+            secondNumber = firstNumber;    
+            firstNumber = '';
+        }
     });
 });
 

@@ -31,4 +31,8 @@ Gotchas:
 
 ✔ Add a backspace button. @done(21-07-30 05:08)
 
-☐ Add keyboard support.
+✔ Add keyboard support. @done(21-07-30 06:23)
+
+✔ Allow only 1 floating point. @done(21-07-30 06:03)
+
+✔ Don't allow 0s in front. @done(21-07-30 06:09)

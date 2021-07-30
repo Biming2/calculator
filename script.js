@@ -68,44 +68,28 @@ function clearDisplay() {
     content.innerText = '';
 }
 
-operatorsArray.forEach(operatorBtn => {
-    operatorBtn.addEventListener('click', function() {
-        if(firstNumber != '' && secondNumber != '') {
-            if(result > 0) {
-                secondNumber = result;
-            }
-            result = operate(secondNumber, firstNumber, operator);
-            updateDisplay(result);
-            secondNumber = firstNumber;
-            firstNumber = '';
-        }
-        if(firstNumber === '') {
-            operator = operatorBtn.value;
-            secondNumber = result;
-        }
-        else {
-            operator = operatorBtn.value;
-            secondNumber = firstNumber;    
-            firstNumber = '';
-        }
-    });
-});
+function appendNumber(number) {
+    if(firstNumber === '' && number === '.') {
+        firstNumber += '0.';
+    }
+    if(number === '.' && firstNumber.indexOf('.') > -1) {
+        return;
+    }
+    if(firstNumber.charAt(0) === '0' && number === '0') {
+        return;
+    }
+    if(result != 0 && operator === '') {
+        result = 0;
+        firstNumber = '';
+        secondNumber = '';
+        operator = '';
+        
+    }
+    firstNumber += number;
+    updateDisplay(firstNumber);
+}
 
-operandsArray.forEach(operand => {
-    operand.addEventListener('click', function() {
-        if(result != 0 && operator === '') {
-            result = 0;
-            firstNumber = '';
-            secondNumber = '';
-            operator = '';
-            
-        }
-        firstNumber += operand.value;
-        updateDisplay(firstNumber);
-    });
-});
-
-equal.addEventListener('click', function() {
+function evaluate() {
     if(operator === '' && firstNumber === '') {
         updateDisplay(result);
     }
@@ -119,15 +103,55 @@ equal.addEventListener('click', function() {
         secondNumber = '';
         operator = '';
     }
-});
+}
 
-clear.addEventListener('click', function() {
+function deleteNumber() {
+    firstNumber = firstNumber.slice(0, firstNumber.length - 1);
+    updateDisplay(firstNumber);
+}
+
+function clearButton() {
     clearDisplay();
     firstNumber = '';
     secondNumber = '';
     operator = '';
     result = 0;
-})
+}
+
+function operatorButton(operatorValue) {
+    if(firstNumber != '' && secondNumber != '') {
+        if(result > 0) {
+            secondNumber = result;
+        }
+        result = operate(secondNumber, firstNumber, operator);
+        updateDisplay(result);
+        secondNumber = firstNumber;
+        firstNumber = '';
+    }
+    if(firstNumber === '') {
+        operator = operatorValue;
+        secondNumber = result;
+    }
+    else {
+        operator = operatorValue;
+        secondNumber = firstNumber;    
+        firstNumber = '';
+    }
+}
+
+operatorsArray.forEach(operatorBtn => {
+    operatorBtn.addEventListener('click', () => operatorButton(operatorBtn.value));
+});
+
+operandsArray.forEach(operand => {
+    operand.addEventListener('click', () => appendNumber(operand.value))
+});
+
+equal.addEventListener('click', () => evaluate());
+
+clear.addEventListener('click', () => clearButton());
+
+deleteBtn.addEventListener('click', () => deleteNumber());
 
 sign.addEventListener('click', function() {
     if(firstNumber != '') {
@@ -136,7 +160,25 @@ sign.addEventListener('click', function() {
     }
 });
 
-deleteBtn.addEventListener('click', function() {
-    firstNumber = firstNumber.slice(0, firstNumber.length - 1);
-    updateDisplay(firstNumber);
+document.addEventListener('keyup', function(event) {
+    if(event.key >= 0 && event.key <= 9) {
+        appendNumber(event.key);
+    }
+    
+    if(event.key === '.') {
+        appendNumber(event.key);
+    }
+    if(event.key === '=' || event.key === 'Enter') {
+        evaluate();
+    }
+    if(event.key === 'Backspace') {
+        deleteNumber();
+    }
+    
+    if(event.key === 'Escape') {
+        clearButton();
+    }
+    if(event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
+        operatorButton(event.key);
+    }
 });

@@ -1,6 +1,6 @@
 let firstNumber = '';
 let secondNumber = '';
-let result;
+let result = 0;
 let operator = '';
 let operatorOptions = ['+', '-', '*', '/'];
 const operands = document.getElementsByClassName('operand');
@@ -77,11 +77,14 @@ operatorsArray.forEach(operatorBtn => {
             }
             result = operate(secondNumber, firstNumber, operator);
             updateDisplay(result);
+            secondNumber = firstNumber;
+            firstNumber = '';
         }
         if(firstNumber === '') {
             operator = operatorBtn.value;
+            secondNumber = result;
         }
-        else{
+        else {
             console.log(firstNumber);
             console.log(operatorBtn.value);
             operator = operatorBtn.value;
@@ -93,8 +96,18 @@ operatorsArray.forEach(operatorBtn => {
 
 operandsArray.forEach(operand => {
     operand.addEventListener('click', function() {
-        firstNumber += operand.value;
-        updateDisplay(firstNumber);
+        if(result != 0 && operator === '') {
+            result = 0;
+            firstNumber = '';
+            secondNumber = '';
+            operator = '';
+            firstNumber += operand.value;
+            updateDisplay(firstNumber);
+        }
+        else {
+            firstNumber += operand.value;
+            updateDisplay(firstNumber);
+        }
     });
 });
 
@@ -124,7 +137,9 @@ clear.addEventListener('click', function() {
 })
 
 sign.addEventListener('click', function() {
-    firstNumber *= -1;
-    console.log(firstNumber);
-    updateDisplay(firstNumber);
+    if(firstNumber != '') {
+        firstNumber *= -1;
+        console.log(firstNumber);
+        updateDisplay(firstNumber);
+    }
 });

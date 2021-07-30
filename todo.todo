@@ -25,7 +25,7 @@ Gotchas:
 
 ✔ Add floating numbers. @done(21-07-30 03:07)
 
-☐ Fix chaining and equal sign. Can't change operator before entering a number.
+✔ Fix chaining and equal sign. Can't change operator before entering a number. @done(21-07-30 03:39)
 
 ☐ Make it look nice.
 

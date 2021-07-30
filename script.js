@@ -10,6 +10,7 @@ const operatorsArray = Array.prototype.slice.call(operators);
 const equal = document.getElementById('equal');
 const clear = document.getElementById('clear');
 const sign = document.getElementById('sign');
+const deleteBtn = document.getElementById('delete');
 const content = document.getElementById('result');
 
 function add(a, b) {
@@ -39,24 +40,22 @@ function operate(a, b, operator) {
 
     switch(operator) {
         case '+':
-            console.log('adding');
             result = add(a, b);
             break;
         case '-':
-            console.log('subtracting');
             result = subtract(a, b);
             break;
         case '*':
-            console.log('multiplying');
             result = multiply(a, b);
             break;
         case '/':
-            console.log('dividing');
             result = divide(a, b);
             break;
         default:
             break;
     }
+
+    console.log(`${a} ${operator} ${b} = ${result}`);
 
     return result;
 }
@@ -85,8 +84,6 @@ operatorsArray.forEach(operatorBtn => {
             secondNumber = result;
         }
         else {
-            console.log(firstNumber);
-            console.log(operatorBtn.value);
             operator = operatorBtn.value;
             secondNumber = firstNumber;    
             firstNumber = '';
@@ -101,45 +98,45 @@ operandsArray.forEach(operand => {
             firstNumber = '';
             secondNumber = '';
             operator = '';
-            firstNumber += operand.value;
-            updateDisplay(firstNumber);
+            
         }
-        else {
-            firstNumber += operand.value;
-            updateDisplay(firstNumber);
-        }
+        firstNumber += operand.value;
+        updateDisplay(firstNumber);
     });
 });
 
 equal.addEventListener('click', function() {
-    if(firstNumber === '' || secondNumber === '') {
+    if(operator === '' && firstNumber === '') {
         updateDisplay(result);
     }
+    else if(operator === '' && firstNumber != '') {
+        updateDisplay(firstNumber);
+    }
     else {
-        console.log(firstNumber, operator, secondNumber);
         result = operate(secondNumber, firstNumber, operator);
-        console.log(result);
         updateDisplay(result);
-        firstNumber = result;
+        firstNumber = '';
         secondNumber = '';
+        operator = '';
     }
 });
 
 clear.addEventListener('click', function() {
-    console.log('CLEARING');
     clearDisplay();
     firstNumber = '';
     secondNumber = '';
     operator = '';
     result = 0;
-    console.log(firstNumber, secondNumber, operator);
-    console.log('CLEARED');
 })
 
 sign.addEventListener('click', function() {
     if(firstNumber != '') {
         firstNumber *= -1;
-        console.log(firstNumber);
         updateDisplay(firstNumber);
     }
+});
+
+deleteBtn.addEventListener('click', function() {
+    firstNumber = firstNumber.slice(0, firstNumber.length - 1);
+    updateDisplay(firstNumber);
 });

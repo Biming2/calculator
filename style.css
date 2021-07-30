@@ -34,6 +34,8 @@ body {
     grid-row-end: 1;
     background-color: #336699;
     border-color: #274f77;
+    display: inline-flex;
+    flex-wrap: flex;
 }
 
 #content {
@@ -68,13 +70,13 @@ body {
     grid-column-end: 3;
 }
 
-.button, #equal, #clear, #sign {
+.button, #equal, #clear, #sign, #delete {
     border-radius: 5%;
     font-weight: bold;
     font-size: 16px;
 }
 
-.operator, #equal, #clear, #sign {
+.operator, #equal, #clear, #sign, #delete {
     border-style: solid;
     border-color: #336699;
     background-color: #e5ecf3;
@@ -86,6 +88,6 @@ body {
     background-color: #aec0d3;
 }
 
-#equal:hover, #clear:hover, #sign:hover, .operator:hover, .operand:hover {
+#equal:hover, #clear:hover, #sign:hover, .operator:hover, .operand:hover, #delete:hover {
     background-color: #d2e2f1;
 }

@@ -27,8 +27,8 @@ Gotchas:
 
 ✔ Fix chaining and equal sign. Can't change operator before entering a number. @done(21-07-30 03:39)
 
-☐ Make it look nice.
+✔ Make it look nice. @done(21-07-30 05:06)
 
-☐ Add a backspace button.
+✔ Add a backspace button. @done(21-07-30 05:08)
 
 ☐ Add keyboard support.

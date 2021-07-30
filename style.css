@@ -3,10 +3,27 @@ html, body {
     width: 100%;
     padding: 0;
     margin: 0;
-    font-family: 'DejaVu Sans';
+    font-family: monospace;
 }
 
-body {
+#headerBg {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 100%;
+    flex-direction: column;
+    background-color: #336699;
+    padding-top: 2rem;
+}
+
+#title {
+    font-weight: bold;
+    color: white;
+    font-size: 36px;
+}
+
+#main {
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -90,4 +107,11 @@ body {
 
 #equal:hover, #clear:hover, #sign:hover, .operator:hover, .operand:hover, #delete:hover {
     background-color: #d2e2f1;
+}
+
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
 }

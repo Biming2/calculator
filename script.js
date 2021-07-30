@@ -55,8 +55,6 @@ function operate(a, b, operator) {
             break;
     }
 
-    console.log(`${a} ${operator} ${b} = ${result}`);
-
     return result;
 }
 

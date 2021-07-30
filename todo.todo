@@ -23,7 +23,9 @@ Gotchas:
     Pressing *clear* should wipe out any existing data.. make sure the user is really starting fresh after pressing *clear*.
     Error message if dividing by 0, etc.
 
-☐ Add floating numbers.
+✔ Add floating numbers. @done(21-07-30 03:07)
+
+☐ Fix chaining and equal sign. Can't change operator before entering a number.
 
 ☐ Make it look nice.
 

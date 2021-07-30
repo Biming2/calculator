@@ -83,3 +83,11 @@ body {
     display: inline-block;
     text-align: right;
 }
+
+#equal:hover, #clear:hover, #sign:hover, .operator:hover, .operand:hover {
+    background-color: #d2e2f1;
+}
+
+.clicked {
+    transform: scale(0.9);
+}

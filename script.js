@@ -3,7 +3,6 @@ let secondNumber = '';
 let result;
 let operator = '';
 let operatorOptions = ['+', '-', '*', '/'];
-const content = document.getElementById('result');
 const operands = document.getElementsByClassName('operand');
 const operandsArray = Array.prototype.slice.call(operands);
 const operators = document.getElementsByClassName('operator');
@@ -11,6 +10,7 @@ const operatorsArray = Array.prototype.slice.call(operators);
 const equal = document.getElementById('equal');
 const clear = document.getElementById('clear');
 const sign = document.getElementById('sign');
+const content = document.getElementById('result');
 
 function add(a, b) {
     let result = a + b;
@@ -34,8 +34,8 @@ function divide(a, b) {
 
 function operate(a, b, operator) {
     let result;
-    a = parseInt(a);
-    b = parseInt(b);
+    a = parseFloat(a);
+    b = parseFloat(b);
 
     switch(operator) {
         case '+':
@@ -71,12 +71,18 @@ function clearDisplay() {
 
 operatorsArray.forEach(operatorBtn => {
     operatorBtn.addEventListener('click', function() {
+        if(firstNumber != '' && secondNumber != '') {
+            if(result > 0) {
+                secondNumber = result;
+            }
+            result = operate(secondNumber, firstNumber, operator);
+            updateDisplay(result);
+        }
         console.log(firstNumber);
         console.log(operatorBtn.value);
         operator = operatorBtn.value;
-        secondNumber = firstNumber;
+        secondNumber = firstNumber;    
         firstNumber = '';
-        clearDisplay();
     });
 });
 
@@ -88,12 +94,17 @@ operandsArray.forEach(operand => {
 });
 
 equal.addEventListener('click', function() {
-    console.log(firstNumber, operator, secondNumber);
-    result = operate(secondNumber, firstNumber, operator);
-    console.log(result);
-    updateDisplay(result);
-    firstNumber = '';
-    secondNumber = '';
+    if(firstNumber === '' || secondNumber === '') {
+        updateDisplay(result);
+    }
+    else {
+        console.log(firstNumber, operator, secondNumber);
+        result = operate(secondNumber, firstNumber, operator);
+        console.log(result);
+        updateDisplay(result);
+        firstNumber = result;
+        secondNumber = '';
+    }
 });
 
 clear.addEventListener('click', function() {
@@ -102,6 +113,7 @@ clear.addEventListener('click', function() {
     firstNumber = '';
     secondNumber = '';
     operator = '';
+    result = 0;
     console.log(firstNumber, secondNumber, operator);
     console.log('CLEARED');
 })
